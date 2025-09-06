@@ -1,0 +1,44 @@
+# Xcode
+*.xcworkspace
+*.xcuserstate
+*.xccheckout
+*.moved-aside
+*.xcscmblueprint
+
+# Xcode build
+build/
+DerivedData/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Swift Package Manager
+Packages/
+.swiftpm/
+.build/
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/
+
+# User-specific files
+*.swp
+*.swo
+*.DS_Store
+
+# Playground
+timeline.xctimeline
+playground.xcworkspace
+
+# Xcode Server
+.xcscheme
+.xcresult
