@@ -42,3 +42,9 @@ playground.xcworkspace
 # Xcode Server
 .xcscheme
 .xcresult
+
+# Xcode build products
+*.app
+*.app.dSYM
+*.ipa
+Products/
