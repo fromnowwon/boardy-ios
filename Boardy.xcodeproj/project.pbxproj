@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DE42FFA32E6C0D8A006FB3A5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DE42FFA22E6C0D88006FB3A5 /* .gitignore */; };
 		DE42FFC22E6C59E3006FB3A5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DE42FFC02E6C59DE006FB3A5 /* README.md */; };
+		DE42FFED2E6D5CC9006FB3A5 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DE42FFEC2E6D5CC9006FB3A5 /* Config.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,11 +35,25 @@
 		DE42FF562E6BFF7E006FB3A5 /* BoardyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoardyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE42FFA22E6C0D88006FB3A5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DE42FFC02E6C59DE006FB3A5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DE42FFEC2E6D5CC9006FB3A5 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DE42FFEF2E6D5D61006FB3A5 /* Exceptions for "Boardy" folder in "Boardy" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DE42FF3D2E6BFF7D006FB3A5 /* Boardy */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DE42FF402E6BFF7D006FB3A5 /* Boardy */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DE42FFEF2E6D5D61006FB3A5 /* Exceptions for "Boardy" folder in "Boardy" target */,
+			);
 			path = Boardy;
 			sourceTree = "<group>";
 		};
@@ -82,6 +97,7 @@
 		DE42FF352E6BFF7D006FB3A5 = {
 			isa = PBXGroup;
 			children = (
+				DE42FFEC2E6D5CC9006FB3A5 /* Config.xcconfig */,
 				DE42FF402E6BFF7D006FB3A5 /* Boardy */,
 				DE42FF4F2E6BFF7E006FB3A5 /* BoardyTests */,
 				DE42FF592E6BFF7E006FB3A5 /* BoardyUITests */,
@@ -221,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE42FFED2E6D5CC9006FB3A5 /* Config.xcconfig in Resources */,
 				DE42FFC22E6C59E3006FB3A5 /* README.md in Resources */,
 				DE42FFA32E6C0D8A006FB3A5 /* .gitignore in Resources */,
 			);
@@ -282,6 +299,7 @@
 /* Begin XCBuildConfiguration section */
 		DE42FF5E2E6BFF7E006FB3A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE42FFEC2E6D5CC9006FB3A5 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -404,6 +422,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Boardy/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -441,6 +460,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Boardy/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

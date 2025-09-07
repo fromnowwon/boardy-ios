@@ -48,3 +48,6 @@ playground.xcworkspace
 *.app.dSYM
 *.ipa
 Products/
+
+# env
+*.xcconfig
