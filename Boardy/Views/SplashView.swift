@@ -4,10 +4,12 @@ struct SplashView: View {
     // 스플래시 화면에서 MainView로 전환하기 위한 상태
     @State private var isActive = false
     @State private var opacity = 0.0
+    
+    @AppStorage("isLoggedIn") private var isLoggedIn: Bool = false
 
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea() // 배경 흰색, 안전 영역까지 확장
+            Color.white.ignoresSafeArea()
             
             VStack {
                 Text("Boardy")
@@ -22,15 +24,19 @@ struct SplashView: View {
                 opacity = 1.0
             }
             
-            // 2초 후 자동으로 MainView로 이동
+            // 2초 후 화면 전환
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 isActive = true
             }
         }
         
-        // isActive가 true면 MainView로 전환
+        // 로그인 상태에 따라 다음 화면 결정
         .fullScreenCover(isPresented: $isActive) {
-            MainView() // SplashView 종료 후 보여줄 화면
+            if isLoggedIn {
+                MainView()
+            } else {
+                OnboardingView()
+            }
         }
     }
 }
