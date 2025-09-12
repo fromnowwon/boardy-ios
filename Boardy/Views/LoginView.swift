@@ -38,10 +38,17 @@ struct LoginView: View {
                         }
 
             
-            Button("로그인") {
+            Button(action: {
                 print("이메일:", email, "비밀번호:", password)
                 login()
+            }) {
+                Text("로그인")
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(10)
             }
+            .contentShape(Rectangle())
             .foregroundColor(.white)
             .padding()
             .frame(maxWidth: .infinity)
