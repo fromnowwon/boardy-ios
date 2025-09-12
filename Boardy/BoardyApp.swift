@@ -6,7 +6,9 @@ struct BoardyApp: App {
     
     var body: some Scene {
             WindowGroup {
-                SplashView()
+                NavigationStack {
+                    RootView()
+                }
             }
         }
 }

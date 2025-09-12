@@ -11,6 +11,8 @@ struct LoginView: View {
     
     var body: some View {
         VStack(spacing: 20) {
+            Spacer()
+            
             TextField("이메일", text: $email)
                 .font(.system(size: 16))
                 .padding(.vertical, 14)
@@ -45,17 +47,28 @@ struct LoginView: View {
                 Text("로그인")
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
+                    .padding()
                     .background(Color.blue)
                     .cornerRadius(10)
             }
             .contentShape(Rectangle())
-            .foregroundColor(.white)
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(Color.blue)
-            .cornerRadius(10)
+            
+            HStack {
+                Text("아직 회원이 아니신가요?")
+                    .foregroundColor(.gray)
+                
+                NavigationLink(destination: SignUpView()) {
+                    Text("회원가입")
+                        .foregroundStyle(.blue)
+                        .fontWeight(.semibold)
+                }
+            }
+            .padding(.top, 10)
+            
+            Spacer()
         }
         .padding()
+        .navigationTitle("로그인")
     }
     
     private func login() {
@@ -75,8 +88,6 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
+#Preview {
+    LoginView()
 }
