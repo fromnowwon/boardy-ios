@@ -1,9 +1,13 @@
 import SwiftUI
+import Combine
 
 struct LoginView: View {
     @AppStorage("isLoggedIn") private var isLoggedIn: Bool = false
+   
     @State private var email = ""
     @State private var password = ""
+    @State private var errorMessage: String?
+    @State private var cancellable: AnyCancellable?
     
     var body: some View {
         VStack(spacing: 20) {
@@ -27,10 +31,16 @@ struct LoginView: View {
                         .stroke(Color.gray.opacity(0.5), lineWidth: 1)
                 )
             
+            if let errorMessage = errorMessage {
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                                .font(.caption)
+                        }
+
+            
             Button("로그인") {
-                if !email.isEmpty && !password.isEmpty {
-                    isLoggedIn = true
-                }
+                print("이메일:", email, "비밀번호:", password)
+                login()
             }
             .foregroundColor(.white)
             .padding()
@@ -39,6 +49,22 @@ struct LoginView: View {
             .cornerRadius(10)
         }
         .padding()
+    }
+    
+    private func login() {
+        errorMessage = nil
+        
+        cancellable = LoginService.shared.login(email: email, password: password)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    self.errorMessage = error.localizedDescription
+                }
+            }, receiveValue: { loginResponse in
+                // accessToken, refreshToken 등을 받아서 앱에 저장 가능
+                self.isLoggedIn = true
+                print("Access Token:", loginResponse.accessToken)
+            })
     }
 }
 
