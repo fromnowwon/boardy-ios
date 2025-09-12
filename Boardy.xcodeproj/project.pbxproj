@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		DE42FFA32E6C0D8A006FB3A5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DE42FFA22E6C0D88006FB3A5 /* .gitignore */; };
 		DE42FFC22E6C59E3006FB3A5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DE42FFC02E6C59DE006FB3A5 /* README.md */; };
-		DE42FFED2E6D5CC9006FB3A5 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DE42FFEC2E6D5CC9006FB3A5 /* Config.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,13 +96,13 @@
 		DE42FF352E6BFF7D006FB3A5 = {
 			isa = PBXGroup;
 			children = (
-				DE42FFEC2E6D5CC9006FB3A5 /* Config.xcconfig */,
 				DE42FF402E6BFF7D006FB3A5 /* Boardy */,
 				DE42FF4F2E6BFF7E006FB3A5 /* BoardyTests */,
 				DE42FF592E6BFF7E006FB3A5 /* BoardyUITests */,
 				DE42FF3F2E6BFF7D006FB3A5 /* Products */,
 				DE42FFA22E6C0D88006FB3A5 /* .gitignore */,
 				DE42FFC02E6C59DE006FB3A5 /* README.md */,
+				DE42FFF62E73EF6B006FB3A5 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +114,14 @@
 				DE42FF562E6BFF7E006FB3A5 /* BoardyUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DE42FFF62E73EF6B006FB3A5 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				DE42FFEC2E6D5CC9006FB3A5 /* Config.xcconfig */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,7 +244,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE42FFED2E6D5CC9006FB3A5 /* Config.xcconfig in Resources */,
 				DE42FFC22E6C59E3006FB3A5 /* README.md in Resources */,
 				DE42FFA32E6C0D8A006FB3A5 /* .gitignore in Resources */,
 			);
@@ -299,7 +305,8 @@
 /* Begin XCBuildConfiguration section */
 		DE42FF5E2E6BFF7E006FB3A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE42FFEC2E6D5CC9006FB3A5 /* Config.xcconfig */;
+			baseConfigurationReferenceAnchor = DE42FF402E6BFF7D006FB3A5 /* Boardy */;
+			baseConfigurationReferenceRelativePath = Configs/Config.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
