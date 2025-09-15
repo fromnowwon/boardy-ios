@@ -1,15 +1,6 @@
 import Foundation
 import Combine
 
-struct RefreshTokenRequest: Codable {
-    let refreshToken: String
-}
-
-struct RefreshTokenResponse: Codable {
-    let accessToken: String
-    let refreshToken: String
-}
-
 final class APIService {
     static let shared = APIService()
     private let baseURL = Config.BASE_URL
@@ -28,13 +19,9 @@ final class APIService {
         addAuthHeader(&request)
 
         return URLSession.shared.dataTaskPublisher(for: request)
-            .tryCatch { [weak self] error -> AnyPublisher<(data: Data, response: URLResponse), Error> in
-                guard let self = self else {
-                    throw error
-                }
-                return self.handle401(for: request)
+            .tryMap { data, response in
+                try self.handleResponse(data: data, response: response)
             }
-            .map(\.data)
             .decode(type: T.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
@@ -57,15 +44,12 @@ final class APIService {
         }
 
         return URLSession.shared.dataTaskPublisher(for: request)
-            .tryCatch { [weak self] error -> AnyPublisher<(data: Data, response: URLResponse), Error> in
-                guard let self = self else { throw error }
-                return self.handle401(for: request)
+            .tryMap { data, response in
+                try self.handleResponse(data: data, response: response)
             }
-            .map(\.data)
             .decode(type: T.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
-
 
     /// Authorization 헤더 추가
     private func addAuthHeader(_ request: inout URLRequest) {
@@ -91,5 +75,16 @@ final class APIService {
                     .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
+    }
+    
+    /// 공통 응답 처리 (에러 모델 디코딩)
+    private func handleResponse(data: Data, response: URLResponse) throws -> Data {
+        if let httpResponse = response as? HTTPURLResponse,
+           !(200...299).contains(httpResponse.statusCode) {
+            // 서버 에러를 ErrorResponse 모델로 디코딩
+            let apiError = try? JSONDecoder().decode(ErrorResponse.self, from: data)
+            throw apiError ?? URLError(.badServerResponse)
+        }
+        return data
     }
 }

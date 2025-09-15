@@ -1,16 +1,6 @@
 import Foundation
 import Combine
 
-struct LoginRequest: Codable {
-    let email: String
-    let password: String
-}
-
-struct LoginResponse: Codable {
-    let accessToken: String
-    let refreshToken: String
-}
-
 class LoginService {
     static let shared = LoginService()
     private init() {}

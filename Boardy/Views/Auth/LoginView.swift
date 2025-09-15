@@ -3,7 +3,8 @@ import Combine
 
 struct LoginView: View {
     @AppStorage("isLoggedIn") private var isLoggedIn: Bool = false
-   
+    
+    @State private var cancellables = Set<AnyCancellable>()
     @State private var email = ""
     @State private var password = ""
     @State private var errorMessage: String?
@@ -72,16 +73,23 @@ struct LoginView: View {
     private func login() {
         errorMessage = nil
         
-        cancellable = LoginService.shared.login(email: email, password: password)
+        LoginService.shared.login(email: email, password: password)
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                if case .failure(let error) = completion {
-                    self.errorMessage = error.localizedDescription
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    if let apiError = error as? ErrorResponse {
+                        errorMessage = apiError.message
+                    } else {
+                        errorMessage = error.localizedDescription
+                    }
+                case .finished:
+                    break
                 }
-            }, receiveValue: {
-                // 로그인 성공 시 상태 변경만
-                self.isLoggedIn = true
-            })
+            } receiveValue: {
+                isLoggedIn = true
+            }
+            .store(in: &cancellables)
     }
 }
 

@@ -11,7 +11,7 @@ struct SignUpView: View {
     @State private var errorMessage: String?
     @State private var successMessage: String?
 
-    @State private var cancellable: AnyCancellable?
+    @State private var cancellables = Set<AnyCancellable>()
     
     var body: some View {
         VStack(spacing: 20) {
@@ -111,7 +111,7 @@ struct SignUpView: View {
         successMessage = nil
 
         // API 요청
-        cancellable = SignUpService.shared.signUp(email: email, password: password, nickname: nickname)
+        SignUpService.shared.signUp(email: email, password: password, nickname: nickname)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
@@ -125,6 +125,7 @@ struct SignUpView: View {
                     dismiss()
                 }
             })
+            .store(in: &cancellables) // 뷰가 사라질 때 자동 해제
     }
     
     func isValidEmail(_ email: String) -> Bool {
