@@ -11,7 +11,6 @@ struct MainView: View {
             Text("메인 화면입니다.")
                 .padding()
             Button(action: {
-                // 로그아웃 처리
                 isLoggedIn = false
                 print("로그아웃 완료. 로그인 화면으로 돌아갑니다.")
             }) {

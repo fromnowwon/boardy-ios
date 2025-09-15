@@ -39,9 +39,7 @@ struct LoginView: View {
                                 .font(.caption)
                         }
 
-            
             Button(action: {
-                print("이메일:", email, "비밀번호:", password)
                 login()
             }) {
                 Text("로그인")
@@ -80,10 +78,9 @@ struct LoginView: View {
                 if case .failure(let error) = completion {
                     self.errorMessage = error.localizedDescription
                 }
-            }, receiveValue: { loginResponse in
-                // accessToken, refreshToken 등을 받아서 앱에 저장 가능
+            }, receiveValue: {
+                // 로그인 성공 시 상태 변경만
                 self.isLoggedIn = true
-                print("Access Token:", loginResponse.accessToken)
             })
     }
 }

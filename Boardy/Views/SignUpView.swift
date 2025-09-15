@@ -91,7 +91,6 @@ struct SignUpView: View {
     }
     
     private func signUp() {
-        print("클릭")
         // 기본 유효성 검사
         guard !email.isEmpty, !password.isEmpty, !confirmPassword.isEmpty, !nickname.isEmpty else {
             errorMessage = "모든 필드를 입력해주세요."
