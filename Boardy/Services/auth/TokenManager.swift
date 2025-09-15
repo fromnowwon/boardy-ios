@@ -21,4 +21,8 @@ final class TokenManager {
             .replaceError(with: false)
             .eraseToAnyPublisher()
     }
+    
+    func clearTokens() {
+        KeychainHelper.standard.clearAll()
+    }
 }

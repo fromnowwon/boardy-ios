@@ -12,7 +12,7 @@ struct MainView: View {
                 .padding()
             Button(action: {
                 isLoggedIn = false
-                KeychainHelper.standard.clearAll()
+                TokenManager.shared.clearTokens()
                 print("로그아웃 완료. 로그인 화면으로 돌아갑니다.")
             }) {
                 Text("로그아웃")
