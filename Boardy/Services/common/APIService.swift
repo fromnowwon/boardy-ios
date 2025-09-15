@@ -78,10 +78,10 @@ final class APIService {
     private func handle401(for originalRequest: URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), Error> {
         return TokenManager.shared.refreshAccessToken()
             .flatMap { success -> AnyPublisher<(data: Data, response: URLResponse), Error> in
-                guard success else { return Fail(error: URLError(.userAuthenticationRequired)).eraseToAnyPublisher() }
-                
-                print("Refresh 성공:", success)
-                print("새 Access Token:", KeychainHelper.standard.read(forKey: "accessToken") ?? "없음")
+                guard success else {
+                    return Fail(error: URLError(.userAuthenticationRequired))
+                        .eraseToAnyPublisher()
+                }
 
                 var retryRequest = originalRequest
                 self.addAuthHeader(&retryRequest)
